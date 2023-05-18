@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>Display Student Profile</h1>
+    <h2> Username: {{user.username}}</h2>
+    <p> <b>Password: </b> {{user.password}}</p>
+    <p> <b>Name: </b> {{user.firstname}} {{user.lastname}}</p> 
+    <p> <b>WSU ID: </b> {{user.wsuid}}</p> 
+    <p> <b>Email: </b> {{user.email}}</p> 
+    <p> <b>Address: </b> {%if user.address %} {{user.address}} {% else %} No address {% endif %}</p>
+    <p> <b>Phone: </b> {{user.phone}}</p> {% else %} No phone {% endif %}</p>
+    <!--<p> <b>Last Seen On: </b> {{moment(student.last_seen).format('LLL')}}</p>-->
+
+    {% if user == current_user %}
+        <p><a href = "{{ url_for('routes.edit_profile') }}">Edit the Profile</a></p>
+    {% endif %}
+{% endblock %}

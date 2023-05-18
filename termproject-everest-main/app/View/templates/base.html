@@ -1,0 +1,40 @@
+<html>
+    <head>
+       {% if title %}
+          <title>{{ title }} - Portal </title>
+       {% else %}
+          <title> Welcome to the Portal! </title>
+       {% endif %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+
+    <body>
+        <div class ="nav-container">
+        <table>
+            <tr>
+                <td><a href="{{ url_for('routes.index') }}" class = "button"> Home </a></td>
+                <td><a href="{{ url_for('routes.index') }}" class = "button"> Profile </a></td>
+                <td><a href="{{ url_for('routes.index') }}" class = "button"> Apply for TA positions </a></td>
+                <td><a href="{{ url_for('routes.index') }}" class = "button"> Create TA positions </a></td>
+                <td><a href="{{ url_for('auth.login') }}" class = "button"> Login </a></td>
+                <td><a href="{{ url_for('auth.logout') }}" class = "button"> Logout </a></td>
+        
+                <td> Current user: <span class="useritem">________</span> </td>  
+                <!--{{ current_user.username }}-->
+            </tr>
+        </table>
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div> {{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %} {% endblock %}
+        </div>
+
+    </body>
+</html>
